@@ -7,19 +7,6 @@ using System.IO;
 
 namespace InfiniteVideo
 {
-    public static class ByteHelper
-    {
-        public static byte[] FromHex(string hex)
-        {
-            hex = hex.Replace("-", "");
-            byte[] raw = new byte[hex.Length / 2];
-            for (int i = 0; i < raw.Length; i++)
-            {
-                raw[i] = Convert.ToByte(hex.Substring(i * 2, 2), 16);
-            }
-            return raw;
-        }
-    }
     class Program
     {
         static void Main(string[] args)
@@ -30,7 +17,42 @@ namespace InfiniteVideo
 
         private static void menu()
         {
+            Console.WriteLine("1. Create infinite video");
+            Console.WriteLine("2. Create discord crashing video");
+            int input = Int32.Parse(Console.ReadLine());
+
+            switch (input)
+            {
+                case 1:
+                    createInfiniteVideo();
+                    break;
+                case 2:
+                    createCrashVideo();
+                    break;
+                default:
+                    menu();
+                    break;
+            }
+
             Console.WriteLine("Enter file path: ");
+            string file = Console.ReadLine();
+
+            Console.WriteLine("Enter file path: ");
+            string file2 = Console.ReadLine();
+
+            
+
+            string[] files = { file, file2 };
+            FFMPEG.ConcateVideo(files, "D:Testing/crash/code.mp4");
+            Console.WriteLine("DOne");
+
+            Console.ReadLine();
+        }
+
+        static void createInfiniteVideo()
+        {
+            Console.WriteLine("Enter file path: ");
+
             string file = Console.ReadLine();
 
             List<string> lines = new List<string>();
@@ -67,18 +89,43 @@ namespace InfiniteVideo
 
 
                 File.WriteAllBytes(file, bytes);
-                Console.WriteLine("Done");
+                Console.WriteLine("Finished creating infinite video, press enter to continue");
+                Console.ReadLine();
+                Console.Clear();
+                menu();
             }
             else
             {
                 Console.Clear();
-                Console.WriteLine("File does not exist!");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"File with name {file} does not exist!\n");
+                Console.ResetColor();
                 menu();
             }
+        }
 
+        static void createCrashVideo()
+        {
+            Console.WriteLine("How many videos do you want to join together?");
+            int count = Int32.Parse(Console.ReadLine());
+
+            List<string> files = new List<string>();
+
+            for (int i = 0; i < count; i++)
+            {
+                Console.WriteLine($"{i}. File path: ");
+                files.Add(Console.ReadLine());
+            }
+
+            Console.WriteLine("Enter output file name/path: ");
+            string outp = Console.ReadLine();
+
+            FFMPEG.ConcateVideo(files.ToArray(), outp);
+            Console.WriteLine("Finished creating crash video, press enter to continue");
             Console.ReadLine();
+            Console.Clear();
+            menu();
         }
     }
-
-    
 }
+

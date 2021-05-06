@@ -5,3 +5,6 @@ D:\Programms\C#\InfiniteVideo\InfiniteVideo\obj\Debug\InfiniteVideo.csprojAssemb
 D:\Programms\C#\InfiniteVideo\InfiniteVideo\obj\Debug\InfiniteVideo.csproj.CoreCompileInputs.cache
 D:\Programms\C#\InfiniteVideo\InfiniteVideo\obj\Debug\InfiniteVideo.exe
 D:\Programms\C#\InfiniteVideo\InfiniteVideo\obj\Debug\InfiniteVideo.pdb
+D:\Programms\C#\InfiniteVideo\InfiniteVideo\bin\Debug\NReco.VideoConverter.dll
+D:\Programms\C#\InfiniteVideo\InfiniteVideo\bin\Debug\NReco.VideoConverter.xml
+D:\Programms\C#\InfiniteVideo\InfiniteVideo\obj\Debug\InfiniteVideo.csproj.CopyComplete
